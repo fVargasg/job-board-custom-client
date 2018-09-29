@@ -1,0 +1,13 @@
+<!-- <p *ngFor="let example of examples">
+  {{example.id}}, {{example.text}}
+</p> -->
+<table class="table table-hover">
+  <tr>
+      <th>Id</th>
+      <th>Text</th>
+  </tr>
+  <tr *ngFor="let example of examples">
+      <td> {{ example.id }} </td>
+      <td> {{ example.text }} </td>
+  </tr>
+</table>
