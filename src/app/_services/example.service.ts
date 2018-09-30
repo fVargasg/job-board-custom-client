@@ -11,8 +11,8 @@ export class ExampleService {
 
   constructor(private http: HttpClient) { }
 
-  getExamples() {
-    return this.http.get(this.baseUrl + 'examples');
+  getExamples(httpOptions) {
+    return this.http.get(this.baseUrl + 'examples', httpOptions);
   }
 }
 

@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
   baseUrl = environment.apiUrl;
+  userEmail: any;
 
 constructor(private httpClient: HttpClient) { }
 
@@ -19,7 +20,9 @@ constructor(private httpClient: HttpClient) { }
       .pipe(map((response: any) => {
         const user = response;
         if(user) {
-
+          //console.log(user);
+          localStorage.setItem('token', user.user.token)
+          this.userEmail = user.user.email;
         }
       })
     );

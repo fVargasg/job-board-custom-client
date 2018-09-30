@@ -13,16 +13,16 @@ export class ExampleComponent implements OnInit {
   constructor(private httpClient: HttpClient, private exampleService: ExampleService) { }
 
   ngOnInit() {
-    this.getExamples();
+    //this.getExamples();
   }
 
   getExamples() {
 
-    this.exampleService.getExamples().subscribe(data => {
-      this.examples = data['examples'];
-    }, error => {
-      console.log(error);
-    });
+    // this.exampleService.getExamples().subscribe(data => {
+    //   this.examples = data['examples'];
+    // }, error => {
+    //   console.log(error);
+    // });
   }
 
 }

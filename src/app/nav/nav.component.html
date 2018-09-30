@@ -1,8 +1,14 @@
 <nav class="navbar navbar-dark fixed-top bg-info flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 ml-50" href="#"><i class="fa fa-globe"></i>&nbsp; Job Board</a>
-  <ul class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#">Sign out</a>
-    </li>
-  </ul>
+  <a class="navbar-brand col-sm-3 col-md-2 ml-50" href="#"><i class="fa fa-globe"></i>&nbsp; Jobby Jobs</a>
+  <div *ngIf="loggedIn()" class="dropdown" dropdown>
+  <a class="btn btn-info font-12 dropdown-toggle" href="#" dropdownToggle (click)="false">
+    Welcome, {{authService.userEmail}}
+  </a>
+
+  <div class="dropdown-menu" *dropdownMenu>
+    <!-- <a class="dropdown-item" href="#"><i class="fa fa-user-o"></i> Edit profile</a>
+    <div class="dropdown-divider"></div> -->
+    <a (click)="logout(); false" class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a>
+  </div>
+</div>
 </nav>
