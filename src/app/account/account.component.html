@@ -1,0 +1,41 @@
+
+<div class="col-md-3 shadow-custom" style="margin: 30px auto auto">
+  <tabset>
+    <tab heading="Sign Up" id="tab1">
+        <form #registerForm="ngForm" class="form-signup" (ngSubmit)="register()">
+            <br />
+            <h5 class="form-heading">Please Sign in</h5>
+            <label class="label-form">Name</label>
+            <input type="text" name="name" [(ngModel)]="model.name" class="form-control" placeholder="Name" autofocus="" required>
+            <label class="label-form">Email address</label>
+            <input type="email" name="email" [(ngModel)]="model.email" class="form-control" placeholder="Email address" required>
+            <label class="label-form">Password</label>
+            <input type="password" name="password" [(ngModel)]="model.password" class="form-control" placeholder="Password" required>
+            <label class="label-form">Confirm password</label>
+            <input type="password" name="password_confirmation" [(ngModel)]="model.password_confirmation" class="form-control" placeholder="Confirm password" required>
+            <br>
+            <button [disabled]="!registerForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <br>
+          </form>
+    </tab>
+    <tab heading="Log In">
+        <form #loginForm="ngForm" class="form-login" (ngSubmit)="login()">
+            <br>
+            <h5 class="form-heading">Please log in</h5>
+            <label class="label-form">Email address</label>
+            <input type="email" name="email" class="form-control" [(ngModel)]="modelLogin.email" placeholder="Email address" required="" autofocus="">
+            <label class="label-form">Password</label>
+            <input type="password" name="password" class="form-control" [(ngModel)]="modelLogin.password" placeholder="Password" required="">
+            <br>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <br>
+            <button [disabled]="!loginForm.valid" class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            <br>
+          </form>
+    </tab>
+  </tabset>
+</div>
