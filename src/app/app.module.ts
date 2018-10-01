@@ -14,6 +14,9 @@ import { AlertifyService } from './_services/alertify.service';
 import { HomeComponent } from './home/home.component';
 import { appRoutes } from './routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegionComponent } from './region/region.component';
+import { CommonService } from './_services/common.service';
+import { LocationComponent } from './location/location.component';
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       ExampleComponent,
       NavComponent,
       HomeComponent,
-      DashboardComponent
+      DashboardComponent,
+      RegionComponent,
+      LocationComponent
    ],
    imports: [
       BrowserModule,
@@ -35,7 +40,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
    providers: [
       ExampleService,
       AuthService,
-      AlertifyService
+      AlertifyService,
+      CommonService
    ],
    bootstrap: [
       AppComponent

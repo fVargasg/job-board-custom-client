@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getExamples() {
-  
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -32,5 +32,6 @@ export class DashboardComponent implements OnInit {
       console.log(error);
     });
   }
+  
 
 }

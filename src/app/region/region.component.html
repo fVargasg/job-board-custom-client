@@ -1,0 +1,47 @@
+<div *ngIf="!showCreate" class="container m-top-80">
+    <h5 class="lead font-custom">
+      Regions
+    </h5>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link pointer-cursor" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"  (click)="false">
+                    <i class="fa fa-arrow-left"></i> Go to dashboard
+                </a>
+              </li>
+        </ul>
+        <button class="btn btn-info my-2 my-sm-0" type="button" (click)="showCreateRegion()"><i class="fa fa-plus"></i> Add region</button>
+      </div>
+    </nav>
+    <table *ngIf="regions.length > 0" class="table">
+      <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Description</th>
+      </tr>
+      <tr *ngFor="let region of regions">
+          <td> {{ region.id }} </td>
+          <td> {{ region.name }} </td>
+          <td> {{ region.description }} </td>
+      </tr>
+    </table>
+    <br />
+    <div class="text-center" *ngIf="regions.length == 0"><p class="lead">There is not regions added</p></div>
+  </div>
+  <div *ngIf="showCreate" class="container m-top-100 col-md-4 shadow-custom fadeIn">
+      <form #regionForm="ngForm" class="form-signup" (ngSubmit)="createRegion()" >
+          <br />
+          <h5 class="lead font-custom">New region</h5>
+          <label class="label-form">Name</label>
+          <input type="text" name="name" [(ngModel)]="model.name" class="form-control" placeholder="Name" autofocus=""
+            required>
+          <label class="label-form">Description</label>
+          <input type="text" name="description" [(ngModel)]="model.description" class="form-control" placeholder="Description"
+            required>
+          <br><br>
+          <button [disabled]="!regionForm.valid" class="btn btn-info" type="submit"><i class="fa fa-plus"></i> Create region</button>&nbsp;
+          <button class="btn btn-white btn-simple" type="button" (click)="hideCreateRegion()"><i class="fa fa-close"></i> Cancel</button>
+          <br><br>
+        </form>
+  </div>

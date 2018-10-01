@@ -1,6 +1,6 @@
 <div class="container m-top-80">
-  <h5>
-    <i class="fa fa-reorder"></i> Dashboard - Job list
+  <h5 class="lead font-custom">
+    Dashboard - Job list
   </h5>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -10,14 +10,11 @@
                   <i class="fa fa-cog"></i> Configurations
               </a>
               <div class="dropdown-menu" *dropdownMenu>
-                <a class="dropdown-item" href="#"><i class="fa fa-plus-circle"></i> Add regions</a>
+                <a class="dropdown-item"  [routerLink]="['/region']" ><i class="fa fa-plus-circle"></i> Add regions</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"><i class="fa fa-plus-circle"></i> Add locations</a>
+                <a class="dropdown-item" [routerLink]="['/location']"><i class="fa fa-plus-circle"></i> Add locations</a>
               </div>
             </li>
-          <!-- <li class="nav-item active">
-              <a class="btn btn-info btn-simple" href="#"><i class="fa fa-cog"></i> Configurations</a>
-            </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

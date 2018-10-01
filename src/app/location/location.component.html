@@ -1,0 +1,72 @@
+<div *ngIf="!showCreate" class="container m-top-80">
+  <h5 class="lead font-custom">
+    Locations
+  </h5>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link pointer-cursor" [routerLink]="['/dashboard']" routerLinkActive="router-link-active"
+            (click)="false">
+            <i class="fa fa-arrow-left"></i> Go to dashboard
+          </a>
+        </li>
+      </ul>
+      <button class="btn btn-info my-2 my-sm-0" type="button" (click)="showCreateLocation()"><i class="fa fa-plus"></i>
+        Add location</button>
+    </div>
+  </nav>
+  <table *ngIf="locations.length > 0" class="table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Region</th>
+      <th>Zip code</th>
+    </tr>
+    <tr *ngFor="let location of locations">
+      <td> {{ location.id }} </td>
+      <td> {{ location.name }} </td>
+      <td> {{ location.street }} </td>
+      <td> {{ location.city }} </td>
+      <td> {{ location.state }} </td>
+      <td> {{ location.region }} </td>
+      <td> {{ location.zipcode }} </td>
+    </tr>
+  </table>
+  <br />
+  <div class="text-center" *ngIf="locations.length == 0">
+    <p class="lead">There is not locations added</p>
+  </div>
+</div>
+<div *ngIf="showCreate" class="container m-top-100 col-md-4 shadow-custom fadeIn">
+  <form #locationForm="ngForm"  class="form-signup" (ngSubmit)="createLocation()">
+    <br />
+    <h5 class="lead font-custom">New location</h5>
+    <label class="label-form">Name</label>
+    <input type="text" name="name" [(ngModel)]="model.name" class="form-control" placeholder="Name" autofocus=""
+      required>
+    <label class="label-form">Street address </label>
+    <input type="text" name="street" [(ngModel)]="model.street" class="form-control" placeholder="Street address"
+      required>
+    <label class="label-form">City </label>
+    <input type="text" name="city" [(ngModel)]="model.city" class="form-control" placeholder="City" required>
+    <label class="label-form">State </label>
+    <input type="text" name="state" [(ngModel)]="model.state" class="form-control" placeholder="State" required>
+    <label class="label-form">Region </label>
+    <select (change)="selectOption($event.target.value)" class="form-control">
+      <option value="Select region">Select region</option>
+      <option *ngFor="let region of regions" [value]="region.name">{{region.name}}</option>
+    </select>
+    <label class="label-form">Zip code</label>
+    <input type="text" name="zipcode" [(ngModel)]="model.zipcode" class="form-control" placeholder="Zip code" required>
+    <br><br>
+    <button [disabled]="!locationForm.valid" class="btn btn-info" type="submit"><i class="fa fa-plus"></i> Create
+      location</button>&nbsp;
+    <button class="btn btn-white btn-simple" type="button" (click)="hideCreateLocation()"><i class="fa fa-close"></i>
+      Cancel</button>
+    <br><br>
+  </form>
+</div>
