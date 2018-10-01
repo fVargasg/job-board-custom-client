@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegionComponent } from './region/region.component';
 import { CommonService } from './_services/common.service';
 import { LocationComponent } from './location/location.component';
+import { JobService } from './_services/job.service';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { LocationComponent } from './location/location.component';
       ExampleService,
       AuthService,
       AlertifyService,
-      CommonService
+      CommonService,
+      JobService
    ],
    bootstrap: [
       AppComponent

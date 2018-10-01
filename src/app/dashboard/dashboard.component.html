@@ -1,37 +1,86 @@
-<div class="container m-top-80">
+<div *ngIf="!showCreate" class="container-fluid m-top-80">
   <h5 class="lead font-custom">
     Dashboard - Job list
   </h5>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown" dropdown>
-              <a class="nav-link dropdown-toggle pointer-cursor" dropdownToggle (click)="false">
-                  <i class="fa fa-cog"></i> Configurations
-              </a>
-              <div class="dropdown-menu" *dropdownMenu>
-                <a class="dropdown-item"  [routerLink]="['/region']" ><i class="fa fa-plus-circle"></i> Add regions</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" [routerLink]="['/location']"><i class="fa fa-plus-circle"></i> Add locations</a>
-              </div>
-            </li>
+        <li class="nav-item dropdown" dropdown>
+          <a class="nav-link dropdown-toggle pointer-cursor" dropdownToggle (click)="false">
+            <i class="fa fa-cog"></i> Options
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a class="dropdown-item" [routerLink]="['/region']"><i class="fa fa-plus-circle"></i> Add regions</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/location']"><i class="fa fa-plus-circle"></i> Add locations</a>
+          </div>
+        </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i> Search</button>&nbsp;
-        <button class="btn btn-info my-2 my-sm-0" type="submit"><i class="fa fa-plus"></i> Post a new job</button>
+        <button class="btn btn-info my-2 my-sm-0" (click)="showCreateJob()" type="button"><i class="fa fa-plus"></i> Post a new job</button>
       </form>
     </div>
   </nav>
-  <table class="table table-hover">
+  <table *ngIf="postings.length > 0" class="table table-hover">
     <tr>
-        <th>Id</th>
-        <th>Text</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Location</th>
+      <th>Status</th>
+      <th>Poster</th>
+      <th>Date</th>
     </tr>
-    <tr *ngFor="let example of examples">
-        <td> {{ example.id }} </td>
-        <td> {{ example.text }} </td>
+    <tr *ngFor="let job of postings">
+      <td> {{ job.id }} </td>
+      <td> {{ job.title }} </td>
+      <td> {{ job.description }} </td>
+      <td> {{ job.category }} </td>
+      <td> {{ job.location }} </td>
+      <td> {{ job.status }} </td>
+      <td> {{ job.poster }} </td>
+      <td> {{ job.created_at }} </td>
     </tr>
   </table>
+  <br />
+  <div class="text-center" *ngIf="postings.length == 0">
+    <p class="lead">There is not jobs posted</p>
+  </div>
 </div>
+<div *ngIf="showCreate" class="container m-top-100 col-md-4 shadow-custom fadeIn">
+  <form #jobForm="ngForm" class="form-signup" (ngSubmit)="postJob()">
+    <br />
+    <h5 class="lead font-custom">New job posting</h5>
+    <label class="label-form">Title</label>
+    <input type="text" name="title" [(ngModel)]="model.title" class="form-control" placeholder="Title" autofocus=""
+      required>
+    <label class="label-form">Description</label>
+    <textarea class="form-control" rows="3" name="description" [(ngModel)]="model.description" placeholder="Description" required></textarea>
+    <label class="label-form">Category </label>
+    <select class="form-control" name="category" [(ngModel)]="model.category" required>
+        <option value="Engineering">Engineering</option>
+        <option value="Business">Business</option>
+        <option value="Finance and Insurance">Finance and Insurance</option>
+        <option value="Construction">Construction</option>
+        <option value="Healthcare">Healthcare</option>
+    </select>
+    <label class="label-form">Location </label>
+    <select (change)="selectOption($event.target.value)" class="form-control">
+      <option value="Select region">Select location</option>
+      <option *ngFor="let location of locations" [value]="location.name">{{location.name}}</option>
+    </select>
+    <label class="label-form">Status </label>
+    <select class="form-control" name="status" [(ngModel)]="model.status">
+      <option selected="selected" value="New Post">New Post</option>
+      <option value="pending">Pending</option>
+      <option value="complete">Complete</option></select>
 
+    <br><br>
+    <button [disabled]="!jobForm.valid" class="btn btn-info" type="submit"><i class="fa fa-plus"></i> Post
+      job</button>&nbsp;
+    <button class="btn btn-white btn-simple" type="button" (click)="hideCreateJob()"><i class="fa fa-close"></i>
+      Cancel</button>
+    <br><br>
+  </form>
+</div>

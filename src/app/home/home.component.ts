@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     this.authService.register(user).subscribe(resp => {
       this.alertify.success('Your account was created successfully!');
     }, error => {
-      this.alertify.error('error');
+      this.alertify.error(error.message);
     });
   }
 
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
     this.authService.login(user).subscribe(() => {
       this.alertify.success('Logged successfully!');
     }, error => {
-      this.alertify.error('error');
+      this.alertify.error(error.message);
     }, () => {
       this.router.navigate(['/dashboard']);
     });

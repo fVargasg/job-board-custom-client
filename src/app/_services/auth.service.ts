@@ -18,11 +18,15 @@ constructor(private httpClient: HttpClient) { }
   login(model: any) {
     return this.httpClient.post(this.baseUrl + 'sign-in', model)
       .pipe(map((response: any) => {
-        const user = response;
+        const user = JSON.stringify(response);
+        const userinternal = response;
         if(user) {
-          //console.log(user);
-          localStorage.setItem('token', user.user.token)
-          this.userEmail = user.user.email;
+
+          localStorage.setItem('token', userinternal.user.token);
+          localStorage.setItem('user', user);
+
+          this.userEmail = userinternal.user.email;
+
         }
       })
     );
